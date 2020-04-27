@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,7 @@ import { RequestformComponent } from './requestform/requestform.component';
 import { FormsComponent } from './forms/forms.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FocusDirective } from './focus.directive';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,16 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HomeComponent,
     NavbarComponent,
     RequestformComponent,
-    FormsComponent
+    FormsComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

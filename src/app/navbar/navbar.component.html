@@ -11,15 +11,15 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active" id="navlinks">
                         <ng-container *ngIf="router.url == '/request'; else forms">
-                            <button class="btn btn-outline-warning" id="managerbtn">Request Manager</button>
+                            <button class="btn btn-outline-warning" id="managerbtn" (click)="router.navigate(['/forms'])">Request Manager</button>
                         </ng-container>
                         <ng-template #forms>
-                            <button class="btn btn-outline-warning" id="requestbtn">New Request</button>
+                            <button class="btn btn-outline-warning" id="requestbtn" (click)="router.navigate(['/request'])">New Request</button>
                         </ng-template>
                     </li>
                 </ul>
-                Welcome,&nbsp;<span id="authUserName"></span>
-                <button class="btn btn-outline-danger ml-3 my-2 my-sm-0" id="logout">Logout</button>
+                Welcome,&nbsp;<span id="authUserName">{{emp.fullname}}</span>
+                <button class="btn btn-outline-danger ml-3 my-2 my-sm-0" id="logout" (click)="logout()">Logout</button>
             </ng-container>
             <ng-template #unauthenticated>
                 <ul class="navbar-nav mr-auto"></ul>
@@ -40,16 +40,16 @@
         </div>
         <div class="modal-body bg-dark text-light">
             <form id="loginform">
-                <div id="loginformerror"></div>
+                <div id="loginformerror" *ngIf="error">{{error}}</div>
                 <div class="form-group">
                     <label for="user">Username: </label>
-                    <input type="text" name="user" id="user" class="form-control" required>
+                    <input type="text" name="user" id="user" class="form-control" [(ngModel)]="username" appFocus #user>
                 </div>
                 <div class="form-group">
                     <label for="pass">Password: </label>
-                    <input type="password" name="pass" id="pass" class="form-control" required>
+                    <input type="password" name="pass" id="pass" class="form-control" [(ngModel)]="password" (keydown.enter)="login()">
                 </div>
-                <button id="login" class="btn btn-outline-warning btn-block" type="button">Login</button>
+                <button id="login" class="btn btn-outline-warning btn-block" type="button" (click)="login()">Login</button>
             </form>
         </div>
     </div>
